@@ -33,7 +33,7 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Label Text="{Binding TaskStatus}" Grid.Column="0" />
+                                    <Label Text="{Binding TaskStatus}" Grid.Column="0" HorizontalTextAlignment="Center" />
                                     <Label Text="{Binding Title}" Grid.Column="1" />
                                     <Label Text="{Binding IntensityVisible, StringFormat='{0} дн.'}"  Grid.Column="2" HorizontalTextAlignment="Center" />
                                     <Label Text="{Binding DateVisible, StringFormat='{0:dd.MM.yy}'}" Grid.Column="3" HorizontalTextAlignment="Center" />
