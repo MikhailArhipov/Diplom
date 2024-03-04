@@ -2,12 +2,13 @@
 
 namespace TaskSheduler.DAL;
 
+/// <summary> работа с SQL базой, делаю на основе sqlite-net-pcl, поскольку библиотеки EF не работает из коробки с MAUI, требуются особые настройки</summary>
 public class Repository<T> : IRepository<T> where T : IDomainObject, new()
 {
     public Repository(string ConnString)
     {
         database = new SQLiteConnection(ConnString);
-        database.CreateTable<T>(); 
+        database.CreateTable<T>();
     }
 
     SQLiteConnection database;

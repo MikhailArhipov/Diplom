@@ -4,8 +4,9 @@
              x:Class="TaskSheduler.MainPage"
              xmlns:local="clr-namespace:TaskSheduler"
              Title="Список задач">
+
     <VerticalStackLayout>
-        <StackLayout>
+        <ScrollView MaximumHeightRequest="600">
             <ListView ItemsSource="{Binding Domain}" SelectedItem="{Binding TaskSelected}">
                 <ListView.Header>
                     <Grid BackgroundColor="#ddd">
@@ -17,8 +18,8 @@
                         </Grid.ColumnDefinitions>
                         <Label Text="Статус" Grid.Column="0" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                         <Label Text="Задача" Grid.Column="1" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
-                        <Label Text="Сложность" Grid.Column="2" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
-                        <Label Text="Дата" Grid.Column="3" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                        <Label Text="Трудозатраты" Grid.Column="2" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                        <Label Text="Срок" Grid.Column="3" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
                     </Grid>
                 </ListView.Header>
                 <ListView.ItemTemplate>
@@ -34,17 +35,18 @@
                                     </Grid.ColumnDefinitions>
                                     <Label Text="{Binding TaskStatus}" Grid.Column="0" />
                                     <Label Text="{Binding Title}" Grid.Column="1" />
-                                    <Label Text="{Binding IntensityPlan, StringFormat='{0} дн.'}"  Grid.Column="2" HorizontalTextAlignment="Center" />
-                                    <Label Text="{Binding DatePlan, StringFormat='{0:dd.MM.yy}'}" Grid.Column="3" HorizontalTextAlignment="Center" />
+                                    <Label Text="{Binding IntensityVisible, StringFormat='{0} дн.'}"  Grid.Column="2" HorizontalTextAlignment="Center" />
+                                    <Label Text="{Binding DateVisible, StringFormat='{0:dd.MM.yy}'}" Grid.Column="3" HorizontalTextAlignment="Center" />
                                 </Grid>
                             </ViewCell.View>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackLayout>
+        </ScrollView>
         <StackLayout MinimumHeightRequest="70" Orientation="Horizontal">
             <Button Text="Новая" Command="{Binding AddCommand}" WidthRequest="200" MaximumHeightRequest="50" Margin="10,0" />
+            <Button Text="Редактировать" Command="{Binding EditCommand}" WidthRequest="200" MaximumHeightRequest="50" Margin="10,0" />
             <Button Text="О программе" Command="{Binding InfoCommand}" WidthRequest="200" MaximumHeightRequest="50" Margin="10,0" />
         </StackLayout>
     </VerticalStackLayout>

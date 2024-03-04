@@ -2,58 +2,67 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TaskSheduler.View.EditTask"
+             xmlns:local="clr-namespace:TaskSheduler.ViewModel"
              Title="{Binding Title}">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:DateConverter x:Key="dateConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Margin="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <Label Text="Название" Grid.Row="0" Grid.Column="0" Margin="5" VerticalOptions="Center" />
-        <Entry Text="{Binding Model.Title}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="1" Margin="5" />
-        <Label Text="{Binding Model.CreationDate, StringFormat='Создана {0:dd.MM.yyyy}'}" 
+            <Label Text="Название" Grid.Row="0" Grid.Column="0" Margin="5" VerticalOptions="Center" />
+            <Entry Text="{Binding Model.Title}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="1" Margin="5" />
+            <Label Text="{Binding Model.CreationDate, StringFormat='Создана {0:dd.MM.yyyy}'}" 
                Grid.Row="0" Grid.Column="4" Margin="5" VerticalOptions="Center" HorizontalOptions="Center" />
 
-        <Label Text="Описание:" Grid.Row="1" Grid.Column="0" Margin="5" VerticalOptions="Center" />
-        <Editor Text="{Binding Model.Description}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="5"/>
+            <Label Text="Описание:" Grid.Row="1" Grid.Column="0" Margin="5" VerticalOptions="Center" />
+            <Editor Text="{Binding Model.Description}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="5"/>
 
-        <Label Text="Статус:" Grid.Row="2" Grid.Column="0" Margin="5" VerticalOptions="Center" />
-        <Picker ItemsSource="{Binding StatusList}" SelectedItem="{Binding Model.TaskStatus}" 
+            <Label Text="Статус:" Grid.Row="2" Grid.Column="0" Margin="5" VerticalOptions="Center" />
+            <Picker ItemsSource="{Binding StatusList}" SelectedItem="{Binding Model.TaskStatus}" 
                   Grid.Row="2" Grid.Column="1" Margin="5" VerticalOptions="Center" />
-        <Label Text="Работники:" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" HorizontalTextAlignment="Center" Margin="5" VerticalOptions="Center" />
+            <Label Text="Работники:" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" HorizontalTextAlignment="Center" Margin="5" VerticalOptions="Center" />
 
-        <Label Text="Плановая трудоемкость:" Grid.Row="3" Grid.Column="0" Margin="5" VerticalOptions="Center" />
-        <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Margin="5">
-            <Stepper Value="{Binding Model.IntensityPlan}" Minimum="1" Maximum="100" Increment="1" HeightRequest="50"/>
-            <Entry Text="{Binding Model.IntensityPlan}" HeightRequest="50" />
-            <Label Text=" дн." VerticalOptions="Center" />
-        </StackLayout>
-        <Editor Text="{Binding Model.Workers}" Grid.Row="3" Grid.RowSpan="4" Grid.Column="2" Grid.ColumnSpan="2" Margin="5" />
+            <Label Text="Плановая трудоемкость:" Grid.Row="3" Grid.Column="0" Margin="5" VerticalOptions="Center" />
+            <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Margin="5">
+                <Stepper Value="{Binding Model.IntensityPlan}" Minimum="1" Maximum="100" Increment="1" />
+                <Entry Text="{Binding Model.IntensityPlan}" />
+                <Label Text=" дн." VerticalOptions="Center" />
+            </StackLayout>
+            <Editor Text="{Binding Model.Workers}" Grid.Row="3" Grid.RowSpan="4" Grid.Column="2" Grid.ColumnSpan="2" Margin="5" />
 
-        <Label Text="Плановое окончание:" Grid.Row="4" Grid.Column="0" Margin="5" VerticalOptions="Center" />
-        <DatePicker MinimumDate="{Binding Model.CreationDate}" Date="{Binding Model.DatePlan}" Grid.Row="4" Grid.Column="1" Margin="5" VerticalOptions="Center" />
+            <Label Text="Плановое окончание:" Grid.Row="4" Grid.Column="0" Margin="5" VerticalOptions="Center" />
+            <DatePicker MinimumDate="{Binding Model.CreationDate}" Date="{Binding Model.DatePlan}" Grid.Row="4" Grid.Column="1" Margin="5" VerticalOptions="Center" />
 
-        <Label Text="Реальная трудоемкость:" Grid.Row="5" Grid.Column="0" Margin="5" VerticalOptions="Center" />
-        <Label Text="{Binding Model.IntensityReal}" Grid.Row="5" Grid.Column="1" Margin="5" VerticalOptions="Center" />
+            <Label Text="Реальная трудоемкость:" Grid.Row="5" Grid.Column="0" Margin="5" VerticalOptions="Center" />
+            <Label Text="{Binding Converter={StaticResource dateConverter}, Path=Model.IntensityReal}" Grid.Row="5" Grid.Column="1" Margin="5" VerticalOptions="Center" />
 
-        <Label Text="Завершена:" Grid.Row="6" Grid.Column="0" Margin="5" VerticalOptions="Center" />
-        <Label Text="{Binding Model.FinishDate, StringFormat='{0:dd.MM.yy}'}" Grid.Row="6" Grid.Column="1" Margin="5" />
+            <Label Text="Завершена:" Grid.Row="6" Grid.Column="0" Margin="5" VerticalOptions="Center" />
+            <Label Text="{Binding Model.FinishDate, StringFormat='{0:dd.MM.yy}'}" Grid.Row="6" Grid.Column="1" Margin="5" />
 
-        <StackLayout Grid.Row="7" Grid.ColumnSpan="4" MinimumHeightRequest="70" Orientation="Horizontal">
-            <Button Text="Сохранить" Command="{Binding SaveCommand}" WidthRequest="200" MaximumHeightRequest="50" Margin="10,0" />
-            <Button Text="Удалить" Command="{Binding DelCommand}" WidthRequest="200" MaximumHeightRequest="50" Margin="10,0" />
-        </StackLayout>
-    </Grid>
+            <StackLayout Grid.Row="7" Grid.ColumnSpan="4" MinimumHeightRequest="70" Orientation="Horizontal">
+                <Button Text="Сохранить" Command="{Binding SaveCommand}" WidthRequest="200" MaximumHeightRequest="50" Margin="10,0" />
+                <Button Text="Удалить" Command="{Binding DelCommand}" WidthRequest="200" MaximumHeightRequest="50" Margin="10,0" />
+                <Button Text="Отмена" Command="{Binding CancelCommand}" WidthRequest="200" MaximumHeightRequest="50" Margin="10,0" />
+            </StackLayout>
+        </Grid>
+    </StackLayout>
 </ContentPage>

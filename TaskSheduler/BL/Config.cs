@@ -1,6 +1,7 @@
 ﻿namespace TaskSheduler.BL;
 
-public class TaskStatus_
+/// <summary> настроки </summary>
+public class TaskStatus_                //Перечень статусов задачи
 {
     public const string Start = "Назначена";
     public const string Procced = "Выполняется";
