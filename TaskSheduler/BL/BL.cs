@@ -20,7 +20,7 @@ public class BL
         {
             item = (TaskModel)e.NewItems[0];
             repository.AddOrUpdate(item);
-            if (e.Action == NotifyCollectionChangedAction.Replace) ModelChanged?.Invoke(this, item);
+            ModelChanged?.Invoke(this, item);
         }
 
         if (e.Action == NotifyCollectionChangedAction.Remove)

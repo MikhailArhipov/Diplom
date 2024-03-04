@@ -17,7 +17,7 @@ public class EditTaskViewModel : BaseViewModel
                 Title = "Новая задача";
                 Model = new();
                 break;
-            default:
+            default:                                //Сделано клонирование модели, чтобы изменения не сохранялись до нажатия на кнопку Сохранить
                 Title = "Редактирование / просмотр";
                 Model = model.Clone();
                 break;
