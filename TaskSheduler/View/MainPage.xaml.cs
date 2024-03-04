@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace TaskSheduler;
+﻿namespace TaskSheduler;
 
 public partial class MainPage : ContentPage
 {

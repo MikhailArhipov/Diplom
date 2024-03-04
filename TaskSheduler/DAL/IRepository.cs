@@ -1,6 +1,4 @@
-﻿using SQLite;
-
-namespace TaskSheduler.DAL;
+﻿namespace TaskSheduler.DAL;
 
 /// <summary> Интерфейс данных для SQL базы </summary>
 public interface IDomainObject  //
